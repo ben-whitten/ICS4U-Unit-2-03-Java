@@ -1,6 +1,6 @@
 /*
 * The MrCoxallStack program implements an application that
-* creates a stack.
+* creates a stack and allows you to edit it.
 *
 * @author  Ben Whitten
 * @version 1.2
@@ -16,8 +16,9 @@ public class MrCoxallStack {
   private ArrayList<Integer> someStack = new ArrayList<Integer>();
 
   // variables for later.
-  private int poppedNumber;
-  private int gottenNumber;
+  private String poppedNumber;
+  private int position;
+  private String stackValues;
 
   /////////////////////////////////////////////////////////////////////////////
   // Push function.
@@ -29,22 +30,35 @@ public class MrCoxallStack {
   /**
    * Pop function.
    */
-  public int pop(int size) {
-    poppedNumber = someStack.get(size);
-    someStack.remove(size);
+  public String pop() {
+    try {
+      poppedNumber = "Popped: ";
+      poppedNumber += someStack.get(someStack.size() - 1);
+      someStack.remove(someStack.size() - 1);
+
+    } catch (Exception e) {
+      poppedNumber = "-1";
+    }
+    
     return poppedNumber;
   }
-  
+
   /////////////////////////////////////////////////////////////////////////////
-  // Get function.
-  public int get(int position) {
-    gottenNumber = someStack.get(position);
-    return gottenNumber;
-  }
-  
-  /////////////////////////////////////////////////////////////////////////////
-  // Set function.
-  public void set(int position, int newNumber) {
-    someStack.set(position, newNumber);
+  // Show function.
+  public String show() {
+    try {
+      stackValues = "Current Stack Values: ";
+      stackValues += someStack.get(0);
+      position = 1;
+      if (someStack.size() > 0) {
+        for (position = 1; position < someStack.size(); position++) {
+          stackValues = stackValues + ", " + someStack.get(position);
+        }
+      }
+
+    } catch (Exception e) {
+      stackValues = "-1";
+    }
+    return stackValues;
   }
 }
