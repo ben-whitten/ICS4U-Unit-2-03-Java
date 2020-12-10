@@ -18,12 +18,23 @@ public class MrCoxallStack {
   // variables for later.
   private String poppedNumber;
   private int position;
+  private int intPushedNumber;
   private String stackValues;
 
   /////////////////////////////////////////////////////////////////////////////
-  // Push function.
-  public void push(int addition) {
-    someStack.add(addition);
+  /**
+   * Push function.
+   */
+  public String push(String pushedNumber) {
+    try {
+      intPushedNumber = Integer.parseInt(pushedNumber);
+      someStack.add(intPushedNumber);
+      pushedNumber = "Pushed: " + pushedNumber;
+    } catch (Exception e) {
+      pushedNumber = "-1";
+    }
+
+    return pushedNumber;
   }
   
   /////////////////////////////////////////////////////////////////////////////
@@ -44,7 +55,9 @@ public class MrCoxallStack {
   }
 
   /////////////////////////////////////////////////////////////////////////////
-  // Show function.
+  /**
+   * Show function.
+   */
   public String show() {
     try {
       stackValues = "Current Stack Values: ";

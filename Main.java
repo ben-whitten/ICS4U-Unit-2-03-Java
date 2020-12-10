@@ -22,9 +22,10 @@ class Main {
 
     // Variables which will be used later.
     String option;
-    int pushedNumber;
+    String pushedNumber;
     String poppedNumber;
     String stackValues;
+    String pushedReturn;
 
     // Creating MrCoxallStack.
     MrCoxallStack someStack = new MrCoxallStack();
@@ -56,13 +57,19 @@ class Main {
         if (option.equals("push")) {
           // Getting which number to add to the stack.
           System.out.println("Insert a number to add to the stack:");
-          pushedNumber = scanPush.nextInt();
+          pushedNumber = scanPush.nextLine();
           System.out.println();
 
           // Pushing the number onto the stack.
-          someStack.push(pushedNumber);
-          System.out.println("pushed: " + pushedNumber);
-          System.out.println();
+          pushedReturn = someStack.push(pushedNumber);
+
+          if (pushedReturn.equals("-1")) {
+            System.out.println("- ERROR: INVALID INPUT -");
+            System.out.println();
+          } else {
+            System.out.println(pushedReturn);
+            System.out.println();
+          }
 
         //////////////////////////////////////////////////////////////////////
         // Pop off the top number from MrCoxallStack.
